@@ -35,7 +35,7 @@ function Cart() {
         <h2>Your Cart is Empty</h2>
         <p>Add some delicious cinnamon products to get started!</p>
         <Link to="/products" className="btn-primary">
-          Browse Products
+          Browse
         </Link>
       </div>
     );
@@ -70,7 +70,7 @@ function Cart() {
                 <h3>{item.name}</h3>
                 <p className="item-type">{item.orderType === 'bulk' ? 'Bulk Order' : 'Single Order'}</p>
                 <p className="item-price">
-                  ${getItemPrice(item).toFixed(2)} 
+                  Rs. {getItemPrice(item).toFixed(2)} 
                   <span className="unit"> ({item.name?.toLowerCase().includes('oil') ? 'per 100ml' : 'per 100g'})</span>
                 </p>
               </div>
@@ -95,7 +95,7 @@ function Cart() {
 
               <div className="item-total">
                 <p className="total-label">Total</p>
-                <p className="total-price">${getItemTotal(item).toFixed(2)}</p>
+                <p className="total-price">Rs. {getItemTotal(item).toFixed(2)}</p>
               </div>
 
               <button 
@@ -114,7 +114,7 @@ function Cart() {
           <div className="summary-details">
             <div className="summary-row">
               <span>Subtotal</span>
-              <span>${getCartTotal().toFixed(2)}</span>
+              <span>Rs. {getCartTotal().toFixed(2)}</span>
             </div>
             <div className="summary-row">
               <span>Shipping</span>
@@ -123,7 +123,7 @@ function Cart() {
             <div className="summary-row discount">
               <span>Bulk Discount</span>
               <span className="discount-amount">
-                -${cart.reduce((total, item) => {
+                -Rs. {cart.reduce((total, item) => {
                   if (item.orderType === 'bulk') {
                     return total + (item.price * 0.1 * item.quantity);
                   }
@@ -134,7 +134,7 @@ function Cart() {
             <div className="summary-divider"></div>
             <div className="summary-row total">
               <span>Total</span>
-              <span>${getCartTotal().toFixed(2)}</span>
+              <span>Rs. {getCartTotal().toFixed(2)}</span>
             </div>
           </div>
 
@@ -143,7 +143,7 @@ function Cart() {
           </button>
 
           <div className="shipping-info">
-            <p>✓ Free shipping on orders over $100</p>
+            <p>✓ Free shipping on orders over Rs. 1000</p>
             <p>✓ Secure checkout</p>
             <p>✓ 30-day return policy</p>
           </div>

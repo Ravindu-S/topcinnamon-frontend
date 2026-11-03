@@ -31,8 +31,7 @@ function Checkout() {
   };
 
   const handlePlaceOrder = () => {
-    // This will connect to payment gateway later
-    alert('Proceeding to payment gateway... (Will be integrated soon)');
+    navigate('/payment');
   };
 
   if (!user) {
@@ -45,7 +44,7 @@ function Checkout() {
       <div className="checkout-empty">
         <h2>No items to checkout</h2>
         <Link to="/products" className="btn-primary">
-          Browse Products
+          Browse
         </Link>
       </div>
     );
@@ -83,8 +82,8 @@ function Checkout() {
                     <p className="item-quantity-small">Quantity: {item.quantity}</p>
                   </div>
                   <div className="item-price-checkout">
-                    <p className="unit-price">${getItemPrice(item).toFixed(2)} each</p>
-                    <p className="total-price">${(getItemPrice(item) * item.quantity).toFixed(2)}</p>
+                    <p className="unit-price">Rs. {getItemPrice(item).toFixed(2)} each</p>
+                    <p className="total-price">Rs. {(getItemPrice(item) * item.quantity).toFixed(2)}</p>
                   </div>
                 </div>
               ))}
@@ -143,13 +142,13 @@ function Checkout() {
             <div className="total-breakdown">
               <div className="total-row">
                 <span>Subtotal</span>
-                <span>${calculateTotal()}</span>
+                <span>Rs. {calculateTotal()}</span>
               </div>
               {checkoutItems.some(item => item.orderType === 'bulk') && (
                 <div className="total-row discount">
                   <span>Bulk Discount</span>
                   <span className="discount-amount">
-                    -${checkoutItems.reduce((total, item) => {
+                    -Rs. {checkoutItems.reduce((total, item) => {
                       if (item.orderType === 'bulk') {
                         return total + (item.price * 0.1 * item.quantity);
                       }
@@ -165,7 +164,7 @@ function Checkout() {
               <div className="total-divider"></div>
               <div className="total-row grand-total">
                 <span>Total</span>
-                <span>${calculateTotal()}</span>
+                <span>Rs. {calculateTotal()}</span>
               </div>
             </div>
 

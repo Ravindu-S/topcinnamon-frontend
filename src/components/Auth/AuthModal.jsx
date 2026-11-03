@@ -28,7 +28,7 @@ function AuthModal({ isOpen, onClose, mode = 'signin' }) {
     e.preventDefault();
     
     if (authMode === 'signin') {
-      const result = login(formData.email, formData.password);
+      const result = await login(formData.email, formData.password);
       if (result.success) {
         onClose();
         setFormData({ email: '', password: '', firstName: '', lastName: '', mobile: '' });
@@ -36,7 +36,7 @@ function AuthModal({ isOpen, onClose, mode = 'signin' }) {
         setError(result.error);
       }
     } else {
-      const result = signup(formData);
+      const result = await signup(formData);
       if (result.success) {
         onClose();
         setFormData({ email: '', password: '', firstName: '', lastName: '', mobile: '' });
@@ -69,14 +69,6 @@ function AuthModal({ isOpen, onClose, mode = 'signin' }) {
           </p>
         </div>
 
-        {/* Temp Credentials Display - Remove Later */}
-        {authMode === 'signin' && (
-          <div className="temp-credentials">
-            <p>🔑 Test Credentials:</p>
-            <p><strong>Email:</strong> test@cinnamonmiracle.com</p>
-            <p><strong>Password:</strong> test123</p>
-          </div>
-        )}
 
         {error && <div className="auth-error">{error}</div>}
 

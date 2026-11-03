@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import './ProductDetail.css';
 import AuthModal from '../Auth/AuthModal';
 import { useAuth } from '../Auth/AuthContext';
+import Reviews from '../Reviews/Reviews';
 
 function ProductDetail() {
     const { id } = useParams();
@@ -17,7 +18,7 @@ function ProductDetail() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await fetch(`http://localhost:8081/products/${id}`);
+                const response = await fetch(`http://localhost:8080/products/${id}`);
                 const data = await response.json();
                 setProduct(data);
             } catch (error) {
@@ -106,7 +107,7 @@ function ProductDetail() {
                         <div className="price-section">
                             <span className="price-label">Price:</span>
                             <span className="price-amount">
-                                ${calculatePrice()}
+                                Rs. {calculatePrice()}
                                 <small className="unit"> ({getUnit()})</small>
                             </span>
                             {orderType === 'bulk' && (
@@ -178,16 +179,7 @@ function ProductDetail() {
                     </div>
                 </div>
 
-                <div className="reviews-section">
-                    <h2>Customer Reviews</h2>
-                    
-                    <div className="reviews-placeholder">
-                        <p className="placeholder-text">Review functionality will be implemented soon.</p>
-                        <p className="placeholder-subtext">
-                            Check back later to see what customers are saying about this product!
-                        </p>
-                    </div>
-                </div>
+                <Reviews productId={product.id} />
             </div>
 
             <AuthModal 

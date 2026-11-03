@@ -1,0 +1,336 @@
+/* ========== About Container ========== */
+.about-container {
+  padding-top: 80px; /* Account for fixed navbar */
+  background: var(--bg-dark);
+  min-height: 100vh;
+}
+
+/* ========== Hero Section ========== */
+.hero-about {
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-color);
+  font-family: var(--font-primary);
+  margin-bottom: 1.5rem;
+}
+
+.hero-text h1 .accent-text {
+  display: block;
+  color: var(--primary-color);
+  margin-top: 0.5rem;
+}
+
+.hero-text p {
+  font-family: var(--font-secondary);
+  color: #d9c7ad;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  backdrop-filter: blur(6px);
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+.image-caption {
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+  color: #c7b08f;
+  margin-top: 1rem;
+}
+
+/* ========== Story Section ========== */
+.story-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-container h2 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+  font-family: var(--font-primary);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.section-subtitle {
+  font-family: var(--font-secondary);
+  color: #d9c7ad;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.story-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.story-image img {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+}
+
+.story-text h3 {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-primary);
+}
+
+.story-text p {
+  font-family: var(--font-secondary);
+  color: #d9c7ad;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+/* ========== Values Section ========== */
+.values-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.value-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-color);
+}
+
+.value-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.value-card h3 {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-family: var(--font-primary);
+}
+
+.value-card p {
+  font-family: var(--font-secondary);
+  color: #d9c7ad;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ========== Process Section ========== */
+.process-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.process-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.process-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  font-family: var(--font-primary);
+  margin-bottom: 1rem;
+}
+
+.process-card h3 {
+  font-size: 1.3rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  font-family: var(--font-primary);
+}
+
+.process-card p {
+  font-family: var(--font-secondary);
+  color: #d9c7ad;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ========== CTA Section ========== */
+.cta-section {
+  padding: 4rem 2rem 6rem;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cta-container h2 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+  font-family: var(--font-primary);
+  margin-bottom: 1rem;
+}
+
+.cta-container p {
+  font-family: var(--font-secondary);
+  color: #d9c7ad;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ========== Buttons ========== */
+.btn-primary {
+  background: var(--primary-color);
+  color: #1a140d;
+  border: 1px solid var(--card-border);
+  border-radius: 25px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  font-family: var(--font-primary);
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(237, 212, 177, 0.15);
+}
+
+.btn-ghost {
+  color: var(--text-color);
+  border: 1px solid var(--card-border);
+  border-radius: 25px;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  font-family: var(--font-primary);
+  white-space: nowrap;
+}
+
+.btn-ghost:hover {
+  background: rgba(237, 212, 177, 0.1);
+  border-color: var(--primary-color);
+}
+
+/* ========== Responsive Design ========== */
+@media (max-width: 1024px) {
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .story-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-container h2,
+  .cta-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-primary, .btn-ghost {
+    width: 200px;
+    text-align: center;
+  }
+}
+

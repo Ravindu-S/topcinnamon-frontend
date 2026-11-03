@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8081';  // Your Spring Boot port
+const BASE_URL = 'http://localhost:8080';  // Your Spring Boot port
 
 export const getProducts = async () => {
     const response = await fetch(`${BASE_URL}/products`);

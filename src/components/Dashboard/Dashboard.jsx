@@ -20,30 +20,38 @@ function Dashboard() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
 
-  // Mock data for orders (replace with real data later)
-  const [orders] = useState([
-    {
-      id: 'ORD-001',
-      date: '2024-01-15',
-      items: 3,
-      total: 125.50,
-      status: 'delivered'
-    },
-    {
-      id: 'ORD-002',
-      date: '2024-01-20',
-      items: 2,
-      total: 89.99,
-      status: 'shipping'
-    },
-    {
-      id: 'ORD-003',
-      date: '2024-01-25',
-      items: 5,
-      total: 245.00,
-      status: 'processing'
+  const [orders, setOrders] = useState([]);
+  const [loadingOrders, setLoadingOrders] = useState(true);
+  
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/api/payment/all`);
+        const payments = await response.json();
+        
+        // Filter payments for current user and convert to orders
+        const userOrders = payments
+          .filter(payment => payment.customerEmail === user.email && payment.status === 'COMPLETED')
+          .map(payment => ({
+            id: payment.paymentId,
+            date: payment.createdAt,
+            items: 1, // We can enhance this later
+            total: parseFloat(payment.amount),
+            status: 'delivered' // All completed payments are treated as delivered
+          }));
+        
+        setOrders(userOrders);
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+      } finally {
+        setLoadingOrders(false);
+      }
+    };
+    
+    if (user) {
+      fetchOrders();
     }
-  ]);
+  }, [user]);
 
   // Fetch real products for wishlist
   const [wishlist, setWishlist] = useState([]);
@@ -204,7 +212,16 @@ function Dashboard() {
                 </button>
               </div>
               <div className="orders-list">
-                {orders.slice(0, 3).map(order => (
+                {loadingOrders ? (
+                  <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-color)' }}>
+                    Loading orders...
+                  </div>
+                ) : orders.length === 0 ? (
+                  <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-color)' }}>
+                    No orders yet
+                  </div>
+                ) : (
+                  orders.slice(0, 3).map(order => (
                   <div key={order.id} className="order-card-mini">
                     <div className="order-info">
                       {getStatusIcon(order.status)}
@@ -215,10 +232,11 @@ function Dashboard() {
                     </div>
                     <div className="order-details">
                       <span className="items-count">{order.items} items</span>
-                      <span className="order-total">${order.total.toFixed(2)}</span>
+                      <span className="order-total">Rs. {order.total.toFixed(2)}</span>
                     </div>
                   </div>
-                ))}
+                  ))
+                )}
               </div>
             </div>
 
@@ -250,7 +268,19 @@ function Dashboard() {
             <p className="subtitle">Track and manage your orders</p>
 
             <div className="orders-full-list">
-              {orders.map(order => (
+              {loadingOrders ? (
+                <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-color)' }}>
+                  Loading orders...
+                </div>
+              ) : orders.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '3rem' }}>
+                  <p style={{ color: 'var(--text-color)', marginBottom: '1rem' }}>You haven't placed any orders yet</p>
+                  <Link to="/products" className="btn-primary">
+                    Shop Now
+                  </Link>
+                </div>
+              ) : (
+                orders.map(order => (
                 <div key={order.id} className="order-card">
                   <div className="order-header">
                     <div className="order-id-section">
@@ -277,7 +307,7 @@ function Dashboard() {
                     </div>
                     <div className="order-stat">
                       <span className="label">Total:</span>
-                      <span className="value total-price">${order.total.toFixed(2)}</span>
+                      <span className="value total-price">Rs. {order.total.toFixed(2)}</span>
                     </div>
                   </div>
                   <div className="order-actions">
@@ -287,7 +317,8 @@ function Dashboard() {
                     )}
                   </div>
                 </div>
-              ))}
+                ))
+              )}
             </div>
           </div>
         )}
@@ -308,7 +339,7 @@ function Dashboard() {
                   Your wishlist is empty
                 </p>
                 <Link to="/products" className="btn-primary">
-                  Browse Products
+                  Browse
                 </Link>
               </div>
             ) : (
@@ -331,7 +362,7 @@ function Dashboard() {
                     </div>
                     <div className="wishlist-info">
                       <h3>{item.name}</h3>
-                      <p className="wishlist-price">${item.price.toFixed(2)}</p>
+                      <p className="wishlist-price">Rs. {item.price.toFixed(2)}</p>
                       <div className="wishlist-actions">
                         <button 
                           className="btn-primary-small"

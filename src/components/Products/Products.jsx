@@ -10,12 +10,12 @@ function Products({ category }) {
 
     useEffect(() => {
         fetchProducts();
-    }, []);
+    }, [category]);
 
     const fetchProducts = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`http://localhost:8081/products/category/${category}`);
+            const response = await fetch(`http://localhost:8080/products/category/${category}`);
             const data = await response.json();
             setProducts(data);
         } catch (err) {
@@ -61,7 +61,7 @@ function Products({ category }) {
                             {product.name}
                             <div className="dotted-line"></div>
                             <span className="price-with-unit">
-                                ${product.price.toFixed(2)}
+                                Rs. {product.price.toFixed(2)}
                                 <small className="unit"> ({getUnit()})</small>
                             </span>
                         </h3>

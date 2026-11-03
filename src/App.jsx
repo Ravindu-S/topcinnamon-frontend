@@ -10,6 +10,10 @@ import Dashboard from './components/Dashboard/Dashboard';  // Add this
 import AuthModal from './components/Auth/AuthModal';
 import { useAuth } from './components/Auth/AuthContext';
 import Checkout from './components/Checkout/Checkout';
+import Payment from './components/Payment/Payment';
+import PaymentSuccess from './components/Payment/PaymentSuccess';
+import ContactPage from './pages/ContactPage';
+import AboutPage from './pages/AboutPage';
 
 // Navbar Component
 function Navbar() {
@@ -33,7 +37,7 @@ function Navbar() {
     }
 
     try {
-      const response = await fetch(`http://localhost:8081/products`);
+      const response = await fetch(`http://localhost:8080/products`);
       const allProducts = await response.json();
       
       const filtered = allProducts.filter(product =>
@@ -125,7 +129,7 @@ function Navbar() {
                       />
                       <div className="search-result-info">
                         <h4>{product.name}</h4>
-                        <span className="search-result-price">${product.price.toFixed(2)}</span>
+                        <span className="search-result-price">Rs. {product.price.toFixed(2)}</span>
                       </div>
                     </Link>
                   ))}
@@ -218,10 +222,12 @@ function App() {
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/products/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />  {/* Add this */}
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/payment/success" element={<PaymentSuccess />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/about" element={<div style={{paddingTop: '100px', textAlign: 'center', color: 'var(--text-color)'}}>About Page (Coming Soon)</div>} />
-            <Route path="/contact" element={<div style={{paddingTop: '100px', textAlign: 'center', color: 'var(--text-color)'}}>Contact Page (Coming Soon)</div>} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
           </Routes>
       </div>
     </Router>
